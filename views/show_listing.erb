@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <title></title>
+  </head>
+  <body>
+    <% @concerts.css('.list-view-item').each do |concert| %>
+      <% tickets_available = concert.at_css('.custom').nil? %>
+      <p>
+        <% if tickets_available %>
+          <a href="<%= concert.at_css('.tickets')[:href] %>" taget="_blank"> <%= concert.at_css('.summary').text %> </a><br />
+        <% else %>
+          <%= concert.at_css('.summary').text %><br />
+        <% end %>
+        <%= concert.at_css('.supports').text unless concert.at_css('.supports').nil? %> <br />
+        <%= concert.at_css('.dates').text %> <br />
+        <%= concert.at_css('.doors').text %> <br />
+        <%= tickets_available ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %> <br />
+      </p>
+    <% end %>
+  </body>
+</html>
