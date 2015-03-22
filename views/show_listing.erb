@@ -3,22 +3,71 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <title></title>
+    <title>Sinatra 9:30.com Scrapper</title>
   </head>
   <body>
-    <% @concerts.css('.list-view-item').each do |concert| %>
-      <% tickets_available = concert.at_css('.custom').nil? %>
-      <p>
-        <% if tickets_available %>
-          <a href="<%= concert.at_css('.tickets')[:href] %>" taget="_blank"> <%= concert.at_css('.summary').text %> </a><br />
-        <% else %>
-          <%= concert.at_css('.summary').text %><br />
-        <% end %>
-        <%= concert.at_css('.supports').text unless concert.at_css('.supports').nil? %> <br />
-        <%= concert.at_css('.dates').text %> <br />
-        <%= concert.at_css('.doors').text %> <br />
-        <%= tickets_available ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %> <br />
-      </p>
-    <% end %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1 col-xs-1"></div>
+        <div class="col-md-10 col-xs-10">
+          <h1>Sinatra-based Scrapper for the <a href="http://www.930.com/concerts/" target="_blank">9:30.com</a> website</h1>
+    
+          <h3>This is based entirely based on blog by Hunter Powers</h3>
+    
+          <p>
+            With the exception of updates to the CSS selectors and some styling changes, this is exactly the same program as demonstrated in <a href="http://hunterpowers.com/data-scraping-and-more-with-ruby-nokogiri-sinatra-and-heroku/" target ="_blank">this blog post</a> by Hunter Powers. I wanted to play with Nokogiri and Sinatra and this provided a quick and easy way to have fun with those two awesome gems.
+          </p>
+    
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Date</th>
+                <th><strong>Main Act</strong><br /><small>Opening Act</small></th>
+                <th>Time</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+        
+              <% @concerts.css('.list-view-item').each do |concert| %>
+        
+                <% tickets_available = concert.at_css('.custom').nil? %>      
+        
+                <tr>
+                  <th></th>
+                  <th><%= concert.at_css('.dates').text %></th>
+                  <td>
+                    <% if tickets_available %>
+                      <strong><a href="<%= concert.at_css('.tickets')[:href] %>" target="_blank">
+                        <%= concert.at_css('.summary').text %></strong>
+                        <small><%= "<br /> #{concert.at_css('.supports').text}" unless concert.at_css('.supports').nil? %></small>
+                      </a>
+                    <% else %>
+                      <del>
+                        <%= concert.at_css('.summary').text %>
+                        <%= "<br /> #{concert.at_css('.supports').text}" unless concert.at_css('.supports').nil? %>
+                      </del>
+                    <% end %>
+                  </td>
+                  <td><%= concert.at_css('.doors').text %></td>
+                  <td>
+                    <%= tickets_available ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %>
+                  </td>
+                  <th></th>
+                </tr>
+        
+              <% end %>
+        
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-1 col-xs-1"></div>
+      </div>
+    </div>
   </body>
 </html>
+
+
+
