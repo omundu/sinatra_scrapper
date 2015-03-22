@@ -1,3 +1,3 @@
 require './concert_scrapper'
 
-run MySinatraApp
+run Sinatra::Application
