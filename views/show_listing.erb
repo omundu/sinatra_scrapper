@@ -33,13 +33,11 @@
         
               <% @concerts.css('.list-view-item').each do |concert| %>
         
-                <% tickets_available = concert.at_css('.custom').nil? %>      
-        
                 <tr>
                   <th></th>
                   <th><%= concert.at_css('.dates').text %></th>
                   <td>
-                    <% if tickets_available %>
+                    <% if concert.at_css('.tickets') %>
                       <strong><a href="<%= concert.at_css('.tickets')[:href] %>" target="_blank">
                         <%= concert.at_css('.summary').text %></strong>
                         <small><%= "<br /> #{concert.at_css('.supports').text}" unless concert.at_css('.supports').nil? %></small>
@@ -53,7 +51,7 @@
                   </td>
                   <td><%= concert.at_css('.doors').text %></td>
                   <td>
-                    <%= tickets_available ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %>
+                    <%= concert.at_css('.custom').nil? ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %>
                   </td>
                   <th></th>
                 </tr>
