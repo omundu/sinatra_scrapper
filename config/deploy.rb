@@ -20,7 +20,7 @@ set :rvm_ruby_version, '2.0.0@sinatra_scrapper'
 
 set :unicorn_config_path, "config/unicorn.rb"
 set :unicorn_conf,        "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid,         "#{deploy_to}/shared/pids/unicorn.pid"
+set :unicorn_pid,         "#{deploy_to}/shared/tmp/pids/unicorn.pid"
 set :unicorn_rack_env,    "none"
 
 after 'deploy:publishing', 'deploy:restart'
