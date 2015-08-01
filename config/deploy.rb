@@ -16,6 +16,8 @@ set :deploy_via,  :remote_cache
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :linked_dirs, %w{tmp/pids}
 
+set :rvm_ruby_version, '2.0.0-p643'
+
 set :unicorn_config_path, "config/unicorn.rb"
 set :unicorn_conf,        "#{deploy_to}/current/config/unicorn.rb"
 set :unicorn_pid,         "#{deploy_to}/shared/pids/unicorn.pid"
