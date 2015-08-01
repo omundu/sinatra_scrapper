@@ -20,16 +20,9 @@ set :unicorn_config_path, "config/unicorn.rb"
 set :unicorn_conf,        "#{deploy_to}/current/config/unicorn.rb"
 set :unicorn_pid,         "#{deploy_to}/shared/pids/unicorn.pid"
 
-before 'deploy:initial', 'rvm:install_ruby'
-
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
-  end
-  
-  task :initial do
-    puts "First time out..."
-    invoke 'deploy'
   end
 end
