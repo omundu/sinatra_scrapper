@@ -40,16 +40,20 @@
                     <% if concert.at_css('.tickets') %>
                       <strong><a href="<%= concert.at_css('.tickets')[:href] %>" target="_blank">
                         <%= concert.at_css('.summary').text %></strong>
-                        <small><%= "<br /> #{concert.at_css('.supports').text}" unless concert.at_css('.supports').nil? %></small>
+                        <% unless concert.at_css('.supports').nil? %>
+                          <small><%= "<br /> #{concert.at_css('.supports').text}" %></small>
+                        <% end %>
                       </a>
                     <% else %>
                       <del>
                         <%= concert.at_css('.summary').text %>
-                        <%= "<br /> #{concert.at_css('.supports').text}" unless concert.at_css('.supports').nil? %>
+                        <% unless concert.at_css('.supports').nil? %>
+                          <%= "<br /> #{concert.at_css('.supports').text}" %>
+                        <% end %>
                       </del>
                     <% end %>
                   </td>
-                  <td><%= concert.at_css('.doors').text %></td>
+                  <td><%= concert.at_css('.times').text.strip %></td>
                   <td>
                     <%= concert.at_css('.custom').nil? ? concert.at_css('.price-range').text.strip : "SOLD OUT"  %>
                   </td>
