@@ -3,7 +3,7 @@ lock '3.4.0'
 
 server '104.236.206.30', port: 5753, roles: [:web, :app], primary: true
 
-set :application, 'omundu930'
+set :application, 'omundu930.com'
 set :repo_url,    'git@github.com:omundu/sinatra_scrapper.git'
 set :user,        'deployer'
 
