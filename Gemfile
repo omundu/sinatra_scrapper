@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'sinatra'
 gem 'nokogiri'
-
+gem 'unicorn'
 
 group :developemnt do
   gem 'thin'
@@ -12,8 +12,4 @@ group :developemnt do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
-end
-
-group :production do
-  gem 'unicorn'
 end
