@@ -9,9 +9,9 @@ set :user,        'deployer'
 
 set :deploy_to,   '/var/www/omundu930.com'
 set :stage,       :production
+set :rails_env,   'production'
 set :pty,         true
 set :use_sudo,    false
-set :stage,       :production
 set :deploy_via,  :remote_cache
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :linked_dirs, %w{tmp/pids}
