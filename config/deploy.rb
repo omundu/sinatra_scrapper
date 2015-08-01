@@ -14,7 +14,7 @@ set :pty,         true
 set :use_sudo,    false
 set :deploy_via,  :remote_cache
 set :ssh_options, { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
-set :linked_dirs, %w{tmp/pids}
+set :linked_dirs, %w{tmp/pids tmp/sockets}
 
 set :rvm_ruby_version, '2.0.0@sinatra_scrapper'
 
@@ -27,5 +27,10 @@ after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
+  end
+  
+  task :initial do
+    invoke 'deploy:check:make_linked_dirs'
+    invoke 'deploy'
   end
 end
