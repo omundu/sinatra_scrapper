@@ -10,6 +10,7 @@ group :developemnt do
   gem 'thin'
   gem 'capistrano'
   gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
 end
 
