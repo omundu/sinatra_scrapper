@@ -1,7 +1,7 @@
 deploy_path = "/var/www/omundu930.com"
 rack_root = "#{deploy_path}/current"
 pid_file = "#{deploy_path}/shared/tmp/pids/unicorn.pid"
-socket_file= "#{deploy_path}/shared/tmp/unicorn.sock"
+socket_file= "#{deploy_path}/shared/tmp/sockets/unicorn.sock"
 log_file = "#{rack_root}/log/unicorn.log"
 err_log = "#{rack_root}/log/unicorn_error.log"
 old_pid = pid_file + '.oldbin'
