@@ -14,8 +14,8 @@ get '/club930' do
   erb :show_listing
 end
 
-get '/thewilbur'
-"Work in Progress"
+get '/thewilbur' do
+  "Work in Progress"
 end
 
 get '/interesting' do
