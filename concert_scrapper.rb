@@ -15,7 +15,11 @@ get '/club930' do
 end
 
 get '/thewilbur' do
-  "Work in Progress"
+  url = "http://thewilbur.com/"
+  page = Nokogiri::HTML(open(url))
+  @shows = page.css('.ticket-item')
+  
+  erb :the_wilbur
 end
 
 get '/interesting' do

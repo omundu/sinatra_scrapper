@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <title>The Wilbur Scrapper</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1 col-xs-1"></div>
+        <div class="col-md-10 col-xs-10">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Act</th>
+                <th>Show Times</th>
+                <th></th>
+              </tr>
+            </thead>
+              <% @shows.each do |show| %>
+                <tr>
+                  <td></td>
+                  <td><%= show.at_css('.post-title').text %></td>
+                  <td>
+                    <% show.css('.showtimes').each do |showtime| %>
+                      <table>
+                        <td><%= showtime.at_css('.showdate').text %></td>
+                        <td><%= showtime.at_css('.showtime').text %></td>
+                      </table>
+                    <% end %>
+                  </td>
+                  <td></td>
+                </tr>
+              <% end %>
+            <tbody>
+              
+            </tbody>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
