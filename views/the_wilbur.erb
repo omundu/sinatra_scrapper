@@ -26,8 +26,11 @@
                   <td>
                     <% show.css('.showtimes').each do |showtime| %>
                       <table>
-                        <td><%= showtime.at_css('.showdate').text %></td>
-                        <td><%= showtime.at_css('.showtime').text %></td>
+                        <tr>
+                          <td><%= showtime.at_css('.showdate').text %></td>
+                          <td></td>
+                          <td><%= showtime.at_css('.showtime').text %></td>
+                        </tr>
                       </table>
                     <% end %>
                   </td>
