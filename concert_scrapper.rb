@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 get '/' do
-  "Will it blend?"
+  erb :home
 end
 
 get '/club930' do
